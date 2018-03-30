@@ -4,4 +4,9 @@ export default class Random {
         crypto.getRandomValues(array);
         return array[0];
     }
+
+    static pickRandom(array = []) {
+        if (array.length < 1) return null;
+        return array[Math.floor(Math.random() * array.length)];
+    }
 }
