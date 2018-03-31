@@ -1,5 +1,6 @@
 export default class ValidationUtils {
     static isValidAddress(address) {
+        if (!address) return false;
         try {
             this.isUserFriendlyAddress(address);
             return true;
@@ -11,6 +12,8 @@ export default class ValidationUtils {
     // Copied from: https://github.com/nimiq-network/core/blob/master/src/main/generic/consensus/base/account/Address.js
 
     static isUserFriendlyAddress(str) {
+        if (!str) return;
+
         str = str.replace(/ /g, '');
         if (str.substr(0, 2).toUpperCase() !== 'NQ') {
             throw new Error('Addresses start with NQ', 201);
