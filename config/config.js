@@ -49,7 +49,7 @@ export default class Config {
                     case 'safe': path = '/apps/safe'; break;
                 }
                 if (location.pathname.includes('/dist')) {
-                    path += '/dist';
+                    path += `/deployment-${subdomain}/dist`;
                 } else {
                     path += '/src';
                 }
