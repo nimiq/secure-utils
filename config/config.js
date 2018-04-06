@@ -7,6 +7,7 @@ export default class Config {
         return [tld[tld.length - 2], tld[tld.length - 1]].join('.');
     }
 
+    // sure we want to allow this?
     static set network(network) {
         Config._network = network;
     }
