@@ -22,6 +22,20 @@ export default class Config {
         }
     }
 
+    static set devMode(devMode) {
+        Config._devMode = devMode;
+    }
+
+    static get devMode() {
+        if (Config._devMode) return Config._devMode;
+
+        switch (Config.tld) {
+            case 'nimiq.com': return false;
+            case 'nimiq-testnet.com': return false;
+            default: return true;
+        }
+    }
+
     static origin(subdomain) {
         return Config._origin(subdomain);
     }
