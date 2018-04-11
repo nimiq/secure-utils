@@ -105,7 +105,9 @@ export default class Config {
 }
 
 // Signal if the app should be started in offline mode
-Config.offline = navigator.onLine !== undefined && !navigator.onLine;
+Config.offline = true;
 
 // When packaged as distributed offline app, subdomains are folder names instead
-Config.offlinePackaged = false;
+Config.offlinePackaged = true;
+
+Config.devMode = false;
