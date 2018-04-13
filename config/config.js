@@ -25,7 +25,6 @@ export default class Config {
     static get cdn() {
         switch (Config.tld) {
             case 'nimiq.com': return 'https://cdn.nimiq.com/nimiq.js';
-            case 'nimiq-testnet.com': return 'https://cdn.nimiq-testnet.com/nimiq.js';
             default: return 'https://cdn.nimiq-testnet.com/nimiq.js'; // TODO make https://cdn.nimiq.com/nimiq.js the default
         }
     }
