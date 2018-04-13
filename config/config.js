@@ -55,12 +55,18 @@ export default class Config {
     /* Private methods */
 
     static _origin(subdomain, withPath) {
-        if (location.origin.includes('localhost')) return Config._localhost(subdomain, withPath);
+        if (location.origin.includes('localhost')) {
+            return Config._localhost(subdomain, withPath);
+        }
+
+        if (Config.devMode) {
+            return Config._localhost(subdomain, withPath, true);
+        }
 
         return `https://${subdomain}.${Config.tld}`;
     }
 
-    static _localhost(subdomain, withPath) {
+    static _localhost(subdomain, withPath, ipMode) {
         let path = '';
 
         if (withPath) {
@@ -81,7 +87,9 @@ export default class Config {
 
         subdomain = Config.offlinePackaged ? '' : subdomain + '.';
 
-        return `${location.protocol}//${subdomain}localhost${location.port ? `:${location.port}` : ''}${path}`;
+        const origin = ipMode ? location.host : `${subdomain}localhost`;
+
+        return `${location.protocol}//${origin}${location.port ? `:${location.port}` : ''}${path}`;
     }
 }
 
