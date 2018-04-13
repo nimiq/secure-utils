@@ -87,7 +87,7 @@ export default class Config {
 
         subdomain = Config.offlinePackaged ? '' : subdomain + '.';
 
-        const origin = ipMode ? location.host : `${subdomain}localhost`;
+        const origin = ipMode ? location.hostname : `${subdomain}localhost`;
 
         return `${location.protocol}//${origin}${location.port ? `:${location.port}` : ''}${path}`;
     }
