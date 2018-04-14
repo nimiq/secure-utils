@@ -23,6 +23,8 @@ export default class Config {
     }
 
     static get cdn() {
+        if (Config.offlinePackaged) return Config.src('keyguard') + '/nimiq.js';
+
         switch (Config.tld) {
             case 'nimiq.com': return 'https://cdn.nimiq.com/nimiq.js';
             default: return 'https://cdn.nimiq-testnet.com/nimiq.js'; // TODO make https://cdn.nimiq.com/nimiq.js the default
