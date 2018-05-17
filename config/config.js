@@ -15,6 +15,8 @@ export default class Config {
     static get network() {
         if (Config._network) return Config._network;
 
+        if (Config.offlinePackaged) return 'main';
+
         switch (Config.tld) {
             case 'nimiq.com': return 'main';
             case 'nimiq-testnet.com': return 'test';
