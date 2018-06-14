@@ -76,15 +76,15 @@ export default class Config {
             if (Config.offlinePackaged) path = '/' + subdomain;
             else {
                 switch (subdomain) {
-                    case 'keyguard': path = '/libraries/keyguard'; break;
-                    case 'network': path = '/libraries/network'; break;
-                    case 'safe': path = '/apps/safe'; break;
-                    case 'giveaway': path = '/apps/giveaway'; break;
+                    case 'keyguard': path = '/libraries/keyguard/'; break;
+                    case 'network': path = '/libraries/network/'; break;
+                    case 'safe': path = '/apps/safe/'; break;
+                    case 'giveaway': path = '/apps/giveaway/'; break;
                 }
                 if (location.pathname.includes('/dist')) {
-                    path += `/deployment-${subdomain}/dist`;
+                    path += `deployment-${subdomain}/dist/`;
                 } else {
-                    path += '/src';
+                    path += 'src/';
                 }
             }
         }
