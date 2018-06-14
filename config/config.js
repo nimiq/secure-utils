@@ -79,11 +79,13 @@ export default class Config {
                     case 'keyguard': path = '/libraries/keyguard/'; break;
                     case 'network': path = '/libraries/network/'; break;
                     case 'safe': path = '/apps/safe/'; break;
-                    case 'giveaway': path = '/apps/giveaway/'; break;
+                    case 'promo': path = '/apps/promo/'; break;
                 }
+
                 if (location.pathname.includes('/dist')) {
                     path += `deployment-${subdomain}/dist/`;
-                } else {
+                }
+                else if (['keyguard', 'network', 'safe'].includes(subdomain)) {
                     path += 'src/';
                 }
             }
