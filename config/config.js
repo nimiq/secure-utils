@@ -95,7 +95,7 @@ export default class Config {
 
         const origin = ipMode ? location.hostname : `${subdomain}localhost`;
 
-        return `${location.protocol}//${origin}${location.port ? `:${location.port}` : ''}${path}`;
+        return `${location.protocol}//${origin}${location.port ? `:${location.port}` : ''}${path || (withPath && '/') || ''}`;
     }
 }
 
