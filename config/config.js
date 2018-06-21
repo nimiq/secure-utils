@@ -66,14 +66,14 @@ export default class Config {
             return Config._localhost(subdomain, withPath, true);
         }
 
-        return `https://${subdomain}.${Config.tld}`;
+        return `https://${subdomain}.${Config.tld}${(withPath && '/') || ''}`;
     }
 
     static _localhost(subdomain, withPath, ipMode) {
         let path = '';
 
         if (withPath) {
-            if (Config.offlinePackaged) path = '/' + subdomain;
+            if (Config.offlinePackaged) path = '/' + subdomain + '/';
             else {
                 switch (subdomain) {
                     case 'keyguard': path = '/libraries/keyguard/'; break;
@@ -95,7 +95,7 @@ export default class Config {
 
         const origin = ipMode ? location.hostname : `${subdomain}localhost`;
 
-        return `${location.protocol}//${origin}${location.port ? `:${location.port}` : ''}${path || (withPath && '/') || ''}`;
+        return `${location.protocol}//${origin}${location.port ? `:${location.port}` : ''}${path}`;
     }
 }
 
