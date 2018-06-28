@@ -55,6 +55,10 @@ export default class Config {
         return Config._origin(subdomain, true);
     }
 
+    static get online() {
+        return !Config.offline;
+    }
+
     /* Private methods */
 
     static _origin(subdomain, withPath) {
