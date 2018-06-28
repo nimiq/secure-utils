@@ -22,8 +22,6 @@ export default class BrowserDetection {
 
     static isBadIOS() {
         const version = this.iOSversion();
-        if (version[0] < 11 || (version[0] === 11 && version[1] === 2)) {
-            return true;
-        }
+        return version[0] < 11 || (version[0] === 11 && version[1] === 2) // Only 11.2 has the WASM bug
     }
 }
