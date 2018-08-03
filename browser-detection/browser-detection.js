@@ -31,44 +31,43 @@ export default class BrowserDetection {
      * @returns {Promise}
      */
     static isPrivateMode() {
-      return new Promise((resolve) => {
-        const on = () => { resolve(true) }; // is in private mode
-        const off = () => { resolve(false) }; // not private mode
-        const isSafari = () => {
-          return (
-              /Constructor/.test(window.HTMLElement) ||
-              (function (root) {
-                return (!root || root.pushNotification).toString() === '[object SafariRemoteNotification]';
-               }
-              )(window.safari)
-            );
-        };
-        // Chrome & Opera
-        if (window.webkitRequestFileSystem) {
-          return void window.webkitRequestFileSystem(0, 0, off, on);
-        }
-        // Firefox
-        if ('MozAppearance' in document.documentElement.style) {
-          const db = indexedDB.open(null);
-          db.onerror = on;
-          db.onsuccess = off;
-          return void 0;
-        }
-        // Safari
-        if ( isSafari() ) {
-          try {
-            window.openDatabase(null, null, null, null);
-          } catch (_) {
-            return on();
-          }
-        }
-        // IE10+ & Edge
-        if (!window.indexedDB && (window.PointerEvent || window.MSPointerEvent)) {
-          return on();
-        }
-        // others
-        return off();
-      });
+        return new Promise((resolve) => {
+            const on = () => { resolve(true) }; // is in private mode
+            const off = () => { resolve(false) }; // not private mode
+            const isSafari = () => {
+                return (
+                    /Constructor/.test(window.HTMLElement) ||
+                    (function (root) {
+                            return (!root || root.pushNotification).toString() === '[object SafariRemoteNotification]';
+                        }
+                    )(window.safari)
+                );
+            };
+            // Chrome & Opera
+            if (window.webkitRequestFileSystem) {
+                return void window.webkitRequestFileSystem(0, 0, off, on);
+            }
+            // Firefox
+            if ('MozAppearance' in document.documentElement.style) {
+                const db = indexedDB.open(null);
+                db.onerror = on;
+                db.onsuccess = off;
+                return void 0;
+            }
+            // Safari
+            if ( isSafari() ) {
+                try {
+                    window.openDatabase(null, null, null, null);
+                } catch (_) {
+                    return on();
+                }
+            }
+            // IE10+ & Edge
+            if (!window.indexedDB && (window.PointerEvent || window.MSPointerEvent)) {
+                return on();
+            }
+            // others
+            return off();
+        });
     }
-
 }
