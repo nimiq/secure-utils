@@ -1,4 +1,4 @@
-export default class Reflection {
+export class Reflection {
     /** @param {Object} proto
      *
      * @returns {Set<string>}

@@ -1,4 +1,4 @@
-export default class ValidationUtils {
+export class ValidationUtils {
     static isValidAddress(address) {
         if (!address) return false;
         try {

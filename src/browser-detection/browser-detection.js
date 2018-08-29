@@ -1,4 +1,4 @@
-export default class BrowserDetection {
+export class BrowserDetection {
 
     static isDesktopSafari() {
         // see https://stackoverflow.com/a/23522755

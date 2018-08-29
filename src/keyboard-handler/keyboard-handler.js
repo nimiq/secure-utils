@@ -1,4 +1,4 @@
-export default class KeyboardHandler {
+export class KeyboardHandler {
     // Set individual listener. Only one can be active at a time.
     static setGlobalListener(listener) {
         if (KeyboardHandler.listener !== undefined) {

@@ -1,7 +1,7 @@
 /**
  * Functions taken from https://github.com/google/closure-library/blob/master/closure/goog/crypt/crypt.js
  */
-export default class Utf8Tools {
+export class Utf8Tools {
 
     /**
      * @param {string} str

@@ -1,4 +1,4 @@
-export default class Config {
+export class Config {
 
     /* Public methods */
 
