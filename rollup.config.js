@@ -15,5 +15,12 @@ export default [
             name: 'window',
             extend: true
         }
+    },
+    {
+        input: 'src/main.js',
+        output: {
+            file: 'dist/utils.es.js',
+            format: 'es'
+        }
     }
 ];

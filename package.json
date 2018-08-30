@@ -1,12 +1,12 @@
 {
   "name": "@nimiq/utils",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Nimiq Util Classes",
   "repository": "git@github.com:nimiq/secure-utils.git",
   "author": "Nimiq",
   "license": "Apache-2.0",
-  "main": "dist/utils.common.js",
-  "module": "dist/utils.umd.js",
+  "main": "dist/utils.umd.js",
+  "module": "dist/utils.es.js",
   "scripts": {
     "build": "rollup -c"
   },
