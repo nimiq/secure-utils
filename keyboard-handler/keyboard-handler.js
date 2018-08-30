@@ -21,10 +21,10 @@ export default class KeyboardHandler {
     static _listen(e) {
         if (e.keyCode === 13) return; // enter key
 
-        const activeElement = document.activeElement && document.activeElement.className;
-        const isInInput = activeElement === 'input' || activeElement === 'textarea';
+        const activeElement = document.activeElement && document.activeElement.nodeName;
+        const isInInput = activeElement === 'INPUT' || activeElement === 'TEXTAREA';
 
-        if (isInInput) return;  // We are interested in the case were we're NOT in an input yet
+        if (isInInput) return;  // We are interested in the case where we're NOT in an input yet
 
         e.stopPropagation();
         this.focus();
