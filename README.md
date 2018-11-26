@@ -1,2 +1,1 @@
-# nimiq-utils
-Simple helper libraries for nimiq frontends, which are used in keyguard (and possibly elsewhere)
+Deprecated, please use https://github.com/nimiq/nimiq-utils
