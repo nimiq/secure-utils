@@ -15,6 +15,7 @@ export default class BrowserDetection {
     // - Safari iOS: Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1
     // - Safari iPhone: Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1
     // - Safari iPad: Mozilla/5.0 (iPad; CPU OS 11_2_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0 Mobile/15C202 Safari/604.1
+    // - Brave: Is not indistinguishable from Chrome user agents
     static detectBrowser() {
         if (BrowserDetection._detectedBrowser) {
             return BrowserDetection._detectedBrowser;
@@ -28,7 +29,11 @@ export default class BrowserDetection {
         } else if (/Firefox\//i.test(ua)) {
             BrowserDetection._detectedBrowser = BrowserDetection.Browser.FIREFOX;
         } else if (/Chrome\//i.test(ua)) {
-            BrowserDetection._detectedBrowser = BrowserDetection.Browser.CHROME;
+            // Note that Brave is indistinguishable from Chrome by user agent. The additional check is taken from
+            // https://stackoverflow.com/a/53799770
+            BrowserDetection._detectedBrowser = navigator.plugins.length === 0 && navigator.mimeTypes.length === 0
+                ? BrowserDetection.Browser.BRAVE
+                : BrowserDetection.Browser.CHROME;
         } else if (/^((?!chrome|android).)*safari/i.test(ua)) {
             // see https://stackoverflow.com/a/23522755
             // Note that Chrome iOS is also detected as Safari, see comments in stack overflow
@@ -60,6 +65,7 @@ export default class BrowserDetection {
             case BrowserDetection.Browser.SAFARI:
                 regex = /(iP(hone|ad|od).*?OS |Version\/)(\S+)/i;
                 break;
+            case BrowserDetection.Browser.BRAVE: // can't tell version for Brave
             default:
                 BrowserDetection._detectedVersion = null;
                 return null;
@@ -98,6 +104,10 @@ export default class BrowserDetection {
 
     static isSafari() {
         return BrowserDetection.detectBrowser() === BrowserDetection.Browser.SAFARI;
+    }
+
+    static isBrave() {
+        return BrowserDetection.detectBrowser() === BrowserDetection.Browser.BRAVE;
     }
 
     static isIOS() {
@@ -165,5 +175,6 @@ BrowserDetection.Browser = {
     OPERA: 'opera',
     EDGE: 'edge',
     SAFARI: 'safari',
+    BRAVE: 'brave',
     UNKNOWN: 'unknown',
 };
