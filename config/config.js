@@ -95,8 +95,11 @@ export default class Config {
                 if (location.pathname.includes('/dist')) {
                     path += `deployment-${subdomain}/dist/`;
                 }
-                else if (['keyguard', 'network', 'safe'].includes(subdomain)) {
+                else if (['keyguard', 'safe'].includes(subdomain)) {
                     path += 'src/';
+                }
+                else if (['network'].includes(subdomain)) {
+                    path += 'nimiq-dist/';
                 }
             }
         }
